@@ -50,8 +50,8 @@ function f=non_domination_sort_mod(x,M,V)
 			    for j=1:length(individual(F(front).f(i)).p)
 		    individual(individual(F(front).f(i)).p(j)).n=individual(individual(F(front).f(i)).p(j)).n-1;					
       if(individual(individual(F(front).f(i)).p(j)).n==0)					         
-x(individual(F(front).f(i)).p(j),M+V+1=front+1;
-						Q=[Q individual(F(front).f(i)).p(j)];
+          x(individual(F(front).f(i)).p(j),M+V+1=front+1;
+	  Q=[Q individual(F(front).f(i)).p(j)];
 					end
 				end
 			end
@@ -76,16 +76,19 @@ x(individual(F(front).f(i)).p(j),M+V+1=front+1;
 		for i=1:M
 		    [sorted_based_on_objective,index_of_objectives=sort(y(:,V+i));
 			sorted_based_on_objective=[];
-			for j=1:length(index_of_objectives)		    sorted_based_on_objective(j,:)=y(index_of_objectives(j),:);%%%sorted_based_on_objective			end 
+			for j=1:length(index_of_objectives)		    
+                                sorted_based_on_objective(j,:)=y(index_of_objectives(j),:); 
 				f_max=sorted_based_on_objective(length(index_of_objectives),V+i);
 				f_min=sorted_based_on_objective(1,V+i);
 				y(index_of_objectives(length(index_of_objectives)),M+V+1+i)=Inf;
 				y(index_of_objectives(1),M+V+1+i)=Inf;
-				for j=2:length(index_of_objectives)-1 				    next_obj=sorted_based_on_objective(j+1,V+i);
+				for j=2:length(index_of_objectives)-1 				    
+                                        next_obj=sorted_based_on_objective(j+1,V+i);
 					previous_obj=sorted_based_on_objective(j-1,V+i);
 					if(f_max-f_min==0)
 					    y(index_of_objectives(j),M+V+1+i)=Inf;
-					else				    y(index_of_objectives(j),M+V+1+i)=(next_obj-previous_obj)/(f_max-f_min);
+					else				    
+                                            y(index_of_objectives(j),M+V+1+i)=(next_obj-previous_obj)/(f_max-f_min);
 					end
 				end
 		end
@@ -223,7 +226,7 @@ function f=genetic_operator(parent_chromosome,M,V,mu,mum,l_limit,u_limit)
 	end
 	f=child;
 	
-function f=replace_chromosome(intermediate_chromosome,M,V,pop)%%精英选择策略
+function f=replace_chromosome(intermediate_chromosome,M,V,pop)
     [N,m]=size(intermediate_chromosome);
 	[temp,index]=sort(intermediate_chromosome(:,M+V+1));
 	clear temp m
